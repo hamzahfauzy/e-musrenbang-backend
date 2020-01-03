@@ -21,7 +21,7 @@
 			<div class="dark-overlay"></div>
 			<div class="logo">
 				<img src="assets/logo.png" style="z-index: 2;position: relative;">
-				<h3>E-Musrenbang Desa/Kelurahan Kabupaten Asahan</h3>
+				<h3>Administrator E-Musrenbang Kabupaten Asahan</h3>
 				<!-- <h4>Login Form</h4> -->
 				<div class="container z-container">
 					<div class="row">
@@ -71,7 +71,7 @@ export default {
 	},
 	async created(){
 		this.loader = false
-		this.token = window.localStorage.getItem('emusrenbang_desa_token')
+		this.token = window.localStorage.getItem('administrator_emusrenbang')
 		this.role_name = window.config.getRoleName()
 		await this.authChecker()
 	},
@@ -87,7 +87,7 @@ export default {
 					location='index.html'
 				else
 				{
-					window.localStorage.removeItem('emusrenbang_desa_token')
+					window.localStorage.removeItem('administrator_emusrenbang')
 					this.loader = true
 				}
 			})
@@ -106,7 +106,7 @@ export default {
 				else
 				{
 					this.loginSuccessStatus = 1
-					window.localStorage.setItem('emusrenbang_desa_token',res.data.token)
+					window.localStorage.setItem('administrator_emusrenbang',res.data.token)
 					location='index.html'
 				}
 				this.message = res.message

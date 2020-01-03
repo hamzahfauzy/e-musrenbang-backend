@@ -45,6 +45,11 @@ html, body {
     transition: background-image 1s ease-in-out;
 }
 
+.bg-dashboard {
+    width: 100%;
+    min-height: 100vh;
+}
+
 .dark-overlay {
     display: block;
     position: absolute;

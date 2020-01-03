@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no, width = device-width">
-	<title>E-Musrenbang Desa/Kelurahan Kabupaten Asahan</title>
+	<title>Administrator E-Musrenbang Kabupaten Asahan</title>
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -24,25 +24,6 @@
 <script type='text/javascript'>
 $(document).ready(function() {
     var $obj = lc_lightbox('#lcl_elems_wrapper a');
-
-	var imgIndex = 1
-	var slideElements = document.querySelectorAll('.slider')
-	
-	setInterval(doSlide,10000)
-
-	function doSlide(){
-		if (imgIndex > slideElements.length) {imgIndex = 1}
-  		if (imgIndex < 1) {imgIndex = slideElements.length}
-		for (i = 0; i < slideElements.length; i++) {
-		    slideElements[i].querySelector('.slideshow-img').style.opacity = "0";
-		    slideElements[i].style.height = "0px";
-		}
-		slideElements[imgIndex-1].querySelector('.slideshow-img').style.opacity = "1";
-		slideElements[imgIndex-1].style.height = "100%";
-		imgIndex++
-	}
-
-	doSlide();
 
 });
 </script>
