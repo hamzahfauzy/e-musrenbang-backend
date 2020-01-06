@@ -78,8 +78,8 @@ export default {
 		this.token = window.localStorage.getItem('administrator_emusrenbang')
 		this.activeForm = window.localStorage.getItem('administrator_emusrenbang_active_form') ? window.localStorage.getItem('administrator_emusrenbang_active_form') : 'dashboard'
 		this.role_name = window.config.getRoleName()
+		this.loader = false
 		await this.authChecker()
-		this.loader = true
 	},
 	methods: {
 		async authChecker(){
@@ -97,6 +97,7 @@ export default {
 			else
 			{
 				this.user = await data.data
+				this.loader = true
 			}
 			return data
 		},
