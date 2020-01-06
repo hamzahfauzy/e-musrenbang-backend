@@ -18,6 +18,7 @@
 						<th @click="sortTable(1)">Nama Desa / Kelurahan</th>
 						<th @click="sortTable(2)">Kecamatan</th>
 						<th @click="sortTable(3)">Status</th>
+						<th></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -28,6 +29,9 @@
 						<td><span class="badge badge-success" v-if="list.acara && list.acara.Waktu_Mulai && list.acara.Waktu_Selesai">Musrenbang Selesai</span>
 							<span class="badge badge-warning" v-else-if="list.acara && list.acara.Waktu_Mulai && list.acara.Waktu_Selesai == 0">Sedang Musrenbang</span>
 							<span class="badge badge-secondary" v-else>Belum Musrenbang</span>
+						</td>
+						<td>
+							<button class="btn btn-warning" v-if="list.acara && list.acara.Waktu_Mulai && list.acara.Waktu_Selesai" @click="resetSesi(list.desa.Kd_Prov,list.desa.Kd_Kab,list.desa.Kd_Kec,list.desa.Kd_Kel,list.desa.Kd_Urut)">Reset</button>
 						</td>
 					</tr>
 				</tbody>
@@ -69,6 +73,28 @@ export default {
 			let data = await response.json()
 			this.lists = data
 			return data
+		},
+		async resetSesi(Kd_Prov,Kd_Kab,Kd_Kec,Kd_Kel,Kd_Urut_Kel){
+			var vm = this
+			Swal.fire({
+			  title: 'Reset Sesi Musrenbang',
+			  text: "Apakah anda yakin untuk mereset sesi musrenbang ?",
+			  icon: 'warning',
+			  showCancelButton: true,
+			  confirmButtonColor: '#3085d6',
+			  cancelButtonColor: '#d33',
+			  confirmButtonText: 'Yakin!'
+			}).then(async (result) => {
+			  if (result.value) {
+			    var param = '&Kd_Prov='+Kd_Prov+'&Kd_Kab='+Kd_Kab+'&Kd_Kec='+Kd_Kec+'&Kd_Kel='+Kd_Kel+'&Kd_Urut_Kel='+Kd_Urut_Kel
+				let response = await fetch(this.apiUrl + 'api/reset-kel'+param)
+				let data = await response.json()
+				if(data.status)
+					vm.loadData()
+		    	return
+			  }
+			})
+			return
 		},
 		sortTable(index) {
 		  var table, rows, switching, i, x, y, shouldSwitch;
